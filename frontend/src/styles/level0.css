@@ -1,0 +1,55 @@
+.l0-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /*background-color: #0b2145; /* Dark blue background color */
+    background-image: url('../assets/level0bg.jpg'); /* Path to the image in the assets folder */
+    background-repeat: no-repeat; /* Disable background repeat */
+    color: white; /* White text color */
+    padding: 20px;
+    background-size: cover;
+  }
+  
+  .description {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    text-align: center; /* Center-align the text */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a shadow effect */
+    padding: 10px; /* Add some padding */
+    border: 2px solid #c92b07; /* Add a border */
+    border-radius: 10px; /* Add rounded corners */
+    background-color: rgba(33, 1, 1, 0.3); /* Add a semi-transparent background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a box shadow */
+}
+
+  
+  .input-box {
+    width: 300px;
+    height: 20px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.3); /* Transparent white */
+    color: #0b2145; /* Dark blue text color */
+    display: block;
+  }
+  
+  .submit-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e30f59; /* Blood red color */
+    color: white; /* White text color */
+    font-weight: bold;
+    margin-left: 120px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #a12006; /* Darker shade of red on hover */
+  }
+  
