@@ -6,12 +6,22 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./models/user");
-const user = require("./models/user");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+
+const ANS = [
+  process.env.LEVEL_1,
+  process.env.LEVEL_2,
+  process.env.LEVEL_3,
+  process.env.LEVEL_4,
+  process.env.LEVEL_5,
+  process.env.LEVEL_6,
+  process.env.LEVEL_7,
+  process.env.LEVEL_8,
+];
 
 app.get("/", (req, res) => {
   res.json("Server is running");
@@ -33,10 +43,10 @@ app.post("/register", async (req, res) => {
     const encryptedPassword = await bcrypt.hash(password, 10);
     const completionTime = new Date().getTime();
 
-    await User.create({
+    const user = await User.create({
       username,
       password: encryptedPassword,
-      level: -1,
+      level: 0,
       completionTime,
     });
 
@@ -60,33 +70,52 @@ app.post("/login", async (req, res) => {
       res.status(400).json({ message: "All fields are required..." });
     }
 
-    const user = User.findOne({ username });
+    const user = await User.findOne({ username });
 
-    if (user) {
-      const check = await bcrypt.compare(password, user.password);
-      if (!check) res.status(401).json({ message: "Wrong password" });
+    if (!user) return res.status(404).json({ message: "User not found" });
 
-      const token = jwt.sign(
-        { id: user._id, username },
-        process.env.JWT_SECRET,
-        {
-          expiresIn: "3h",
-        }
-      );
+    const check = await bcrypt.compare(password, user.password);
+    if (!check) res.status(401).json({ message: "Wrong password" });
 
-      user.token = token;
-      user.password = undefined;
+    const token = jwt.sign({ id: user._id, username }, process.env.JWT_SECRET, {
+      expiresIn: "3h",
+    });
 
-      // const options = {
-      //   // expires: new Date(Date.now() + )
-      // }
+    user.token = token;
+    user.password = undefined;
 
-      res.status(201).json(user);
-    } else {
-      // user not found
-    }
+    // const options = {
+    //   // expires: new Date(Date.now() + )
+    // }
+
+    res.status(201).json(user);
   } catch (error) {
     console.log(error);
+  }
+});
+
+app.post("/answer", async (req, res) => {
+  // authorization
+  try {
+    const { username, level, flag } = req.body;
+
+    if (flag !== ANS[level]) {
+      res.status(403).json({ message: "Wrong answer..." });
+    }
+
+    const user = await User.findOne({ username });
+
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    user.level = level + 1;
+    user.completionTime = new Date().getTime();
+
+    await user.save();
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
   }
 });
 
