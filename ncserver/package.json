@@ -1,0 +1,25 @@
+{
+  "name": "ncserver",
+  "version": "1.0.0",
+  "description": "NetCat Server",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx nodemon src/index.ts",
+    "start": "tsc -b & node dist/index.js"
+  },
+  "keywords": [
+    "netcat"
+  ],
+  "author": "Manas Pratim Biswas",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.11.30",
+    "net": "^1.0.2",
+    "typescript": "^5.4.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2"
+  }
+}
