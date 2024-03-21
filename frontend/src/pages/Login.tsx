@@ -11,15 +11,34 @@ function Login({ onCompletion }:LoginProps){
     const [password,setPassword]=useState('');
     const navigate=useNavigate();
 
-    const handlesubmit=(e:FormEvent<HTMLFormElement>)=>{
+    const handlesubmit= async (e:FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
-        if(username==='admin' && password==='password'){
-            onCompletion();
-            navigate('/level0');
-        }
-        else{
-            alert("Hatt tmkc");
-        }
+
+        const loggedInResponse = await fetch(
+            `${process.env.REACT_APP_BACKEND_URL}/login`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({username, password}),
+            }
+          );
+
+          const loggedIn = await loggedInResponse.json();
+
+          if (loggedInResponse.status !== 201) {
+            alert(loggedIn.message)
+      
+            return;
+          }
+      
+          if (loggedIn) {
+            // navigate("/home");
+
+            console.log(loggedIn);
+            
+          } else {
+            alert("Invalid username / password");
+          }
     };
     return(
         <div className="login-container">
