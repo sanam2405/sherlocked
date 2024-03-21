@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./models/user");
+const verifyToken = require("./middleware/verifyToken");
 
 const app = express();
 app.use(cors());
@@ -54,10 +55,13 @@ app.post("/register", async (req, res) => {
       expiresIn: "3h",
     });
 
-    user.token = token;
-    user.password = undefined;
-
-    res.status(201).json(user);
+    res.status(201).json({
+      _id: user._id,
+      username: user.username,
+      level: user.level,
+      completionTime: user.completionTime,
+      token,
+    });
   } catch (error) {
     console.log(error);
   }
@@ -81,20 +85,23 @@ app.post("/login", async (req, res) => {
       expiresIn: "3h",
     });
 
-    user.token = token;
-    user.password = undefined;
-
     // const options = {
     //   // expires: new Date(Date.now() + )
     // }
 
-    res.status(201).json(user);
+    res.status(201).json({
+      _id: user._id,
+      username: user.username,
+      level: user.level,
+      completionTime: user.completionTime,
+      token,
+    });
   } catch (error) {
     console.log(error);
   }
 });
 
-app.post("/answer", async (req, res) => {
+app.post("/answer", verifyToken, async (req, res) => {
   // authorization
   try {
     const { username, level, flag } = req.body;
@@ -112,6 +119,7 @@ app.post("/answer", async (req, res) => {
 
     await user.save();
 
+    console.log(req.user);
     res.status(200).json(user);
   } catch (error) {
     console.log(error);
