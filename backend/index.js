@@ -63,7 +63,7 @@ app.post("/register", async (req, res) => {
       token,
     });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ error: err.message, message: "register error" });
   }
 });
 
@@ -97,7 +97,7 @@ app.post("/login", async (req, res) => {
       token,
     });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ error: err.message, message: "login error" });
   }
 });
 
@@ -114,7 +114,7 @@ app.post("/answer", verifyToken, async (req, res) => {
 
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    user.level = level + 1;
+    user.level = Math.min(level + 1, 8);
     user.completionTime = new Date().getTime();
 
     await user.save();
