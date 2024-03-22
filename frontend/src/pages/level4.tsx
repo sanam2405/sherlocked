@@ -1,14 +1,16 @@
 import { FormEvent, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/level2.css";
+import "../styles/level3.css";
 import HttpStatusCode from "../constants/HttpStatusCodes";
 import { LoginContext } from "../context/LoginContext";
 
-const Level3 = () => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const Level4 = () => {
   const [answer, setAnswer] = useState("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const navigateTo = useNavigate();
 
-  const { setCurrentLevel, setLoginCompleted, currentLevel, loginCompleted } =
+  const { setCurrentLevel, setLoginCompleted, loginCompleted, currentLevel } =
     useContext(LoginContext);
   const BACKEND_BASE_URI = import.meta.env.VITE_BACKEND_BASE_URI;
 
@@ -47,8 +49,7 @@ const Level3 = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (answer.trim().toLowerCase() === "correct") {
-      setCurrentLevel(3);
-      navigateTo("/level-3"); // Navigate to the next level
+      alert("Congrats bc completed all levels");
     } else {
       alert("Incorrect answer. Please try again.");
     }
@@ -56,15 +57,17 @@ const Level3 = () => {
 
   return (
     <>
-      {loginCompleted && currentLevel <= 2 ? (
-        <div className="l2-container">
+      {loginCompleted && currentLevel <= 3 ? (
+        <div className="l3-container">
           <p className="description">
-            It's the 3rd sem. Abhishek has become a senior now. So he wants to
-            interact with his juniors and wants to check how intelligent they
-            are. Abhishek decides to send unique encrypted texts to every junior
-            to maitain perfect secrecy between them. One of them got the
-            encrypted text as 'IOAZGKI'. Can you help him to find the original
-            message?
+            Last sem of 2nd year.... Abhishek has to be well prepared for
+            internship interviews in the next sem. He is now looking for good
+            project ideas in github to level up his resume. But as you know his
+            life is full of mysteries, he stumbled upon a curious message within
+            a project's readme file: "205190311941271283114715981861091941283720
+            Eager to unravel the mystery? Decrypt me! 👆🏽👆🏽 The 221st commit was
+            verified at 11 PM." Can you help Abhishek to unveil the secrets of
+            the project.
           </p>
           <form onSubmit={handleSubmit} className="form">
             <input
@@ -85,4 +88,4 @@ const Level3 = () => {
   );
 };
 
-export default Level3;
+export default Level4;
