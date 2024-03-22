@@ -24,6 +24,17 @@ const ANS = [
   process.env.LEVEL_8,
 ];
 
+const HINTS = [
+  process.env.HINT_LEVEL_1,
+  process.env.HINT_LEVEL_2,
+  process.env.HINT_LEVEL_3,
+  process.env.HINT_LEVEL_4,
+  process.env.HINT_LEVEL_5,
+  process.env.HINT_LEVEL_6,
+  process.env.HINT_LEVEL_7,
+  process.env.HINT_LEVEL_8,
+];
+
 app.get("/", (req, res) => {
   res.json("Server is running");
 });
@@ -106,7 +117,7 @@ app.post("/answer", verifyToken, async (req, res) => {
   try {
     const { username, level, flag } = req.body;
 
-    if (flag !== ANS[level]) {
+    if (level >= 8 || flag !== ANS[level - 1]) {
       res.status(403).json({ message: "Wrong answer..." });
     }
 
@@ -114,7 +125,10 @@ app.post("/answer", verifyToken, async (req, res) => {
 
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    user.level = Math.min(level + 1, 8);
+    if (user.level < level - 1)
+      res.status(401).json({ message: "Unauthorized..." });
+
+    user.level = Math.min(level, 8);
     user.completionTime = new Date().getTime();
 
     await user.save();
@@ -122,7 +136,16 @@ app.post("/answer", verifyToken, async (req, res) => {
     console.log(req.user);
     res.status(200).json(user);
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.get("/hint", (req, res) => {
+  try {
+    const level = req.query.level;
+
+    res.status(200).json({ hint: HINTS[level] });
+  } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
 });
