@@ -140,11 +140,25 @@ app.post("/answer", verifyToken, async (req, res) => {
   }
 });
 
-app.get("/hint", (req, res) => {
+app.get("/hint", verifyToken, (req, res) => {
   try {
     const level = req.query.level;
 
     res.status(200).json({ hint: HINTS[level] });
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.get("/user", verifyToken, async (req, res) => {
+  try {
+    const username = req.query.username;
+
+    const user = await User.findOne({ username });
+
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    res.status(200).json({ level: user.level });
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
