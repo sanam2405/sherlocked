@@ -2,10 +2,12 @@ import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/level0.css";
 import HttpStatusCode from "../constants/HttpStatusCodes";
+import FlashText from "../components/FlashText";
 
 const Level1 = () => {
   const [answer, setAnswer] = useState("");
   const [currentLevel, setCurrentLevel] = useState(0);
+  const isLoggedIn = localStorage.getItem("isLoggedIn") || false;
 
   const navigate = useNavigate();
 
@@ -50,10 +52,14 @@ const Level1 = () => {
           username: localStorage.getItem("user"),
         }),
       });
+
       const { status } = response;
       const jsonData = await response.json();
+
       if (status === HttpStatusCode.OK) {
         setCurrentLevel(jsonData.level);
+      } else {
+        navigate("/error-page");
       }
     } catch (error) {
       console.log(error);
@@ -93,7 +99,7 @@ const Level1 = () => {
 
   return (
     <>
-      {currentLevel >= 0 ? (
+      {isLoggedIn === "true" && currentLevel >= 0 ? (
         <div className="l0-container">
           <p className="description">
             Welcome to Jhand University. the intelligent Abhishek in his first
@@ -118,6 +124,7 @@ const Level1 = () => {
               Submit
             </button>
           </form>
+          <FlashText text="H" />
         </div>
       ) : (
         <div></div>

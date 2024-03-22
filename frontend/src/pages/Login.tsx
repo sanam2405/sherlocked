@@ -31,6 +31,7 @@ const Login = () => {
         localStorage.setItem("user", jsonData.username);
         setTimeout(() => {
           console.log("Logged in!");
+          localStorage.setItem("isLoggedIn", "true");
           navigate("/level-1");
         }, 2000);
       }

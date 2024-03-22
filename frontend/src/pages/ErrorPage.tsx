@@ -1,9 +1,11 @@
-import "../styles/errorpage.css"
+import "../styles/errorpage.css";
 
 const ErrorPage = () => {
-    return <div className="error-container">
-        <img src="/errormeme.gif" alt="Error" />
+  return (
+    <div className="error-container">
+      <img src="/errormeme.gif" alt="Error" className="error-gif" />
     </div>
-}
+  );
+};
 
-export default ErrorPage
+export default ErrorPage;

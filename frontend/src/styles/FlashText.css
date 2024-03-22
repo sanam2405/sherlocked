@@ -1,0 +1,12 @@
+.flash-text {
+    position: absolute;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    color: black;
+    font-size: 2rem;
+  }
+  
+  .flash-text.hidden {
+    opacity: 0;
+  }
+  
