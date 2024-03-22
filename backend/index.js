@@ -140,9 +140,9 @@ app.post("/answer", verifyToken, async (req, res) => {
   }
 });
 
-app.get("/hint", verifyToken, (req, res) => {
+app.post("/hint", verifyToken, (req, res) => {
   try {
-    const level = req.query.level;
+    const { level } = req.body;
 
     res.status(200).json({ hint: HINTS[level] });
   } catch (error) {
@@ -150,9 +150,9 @@ app.get("/hint", verifyToken, (req, res) => {
   }
 });
 
-app.get("/user", verifyToken, async (req, res) => {
+app.post("/user", verifyToken, async (req, res) => {
   try {
-    const username = req.query.username;
+    const { username } = req.body;
 
     const user = await User.findOne({ username });
 
