@@ -108,6 +108,8 @@ const Level3 = () => {
         <div className="l1-container">
           {/* this is the hidden div */}
           <div style={hiddenStyle}>Hello</div>
+
+          {/* This para should have been hidden */}
           <p className="description">
             Now Abhishek is in his second year of college and Mia accepted his
             proposal. So he starts sending messages and POSTS to Mia. But Mia
