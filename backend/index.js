@@ -25,14 +25,10 @@ const ANS = [
 ];
 
 const HINTS = [
-  process.env.HINT_LEVEL_1,
-  process.env.HINT_LEVEL_2,
-  process.env.HINT_LEVEL_3,
-  process.env.HINT_LEVEL_4,
-  process.env.HINT_LEVEL_5,
-  process.env.HINT_LEVEL_6,
-  process.env.HINT_LEVEL_7,
-  process.env.HINT_LEVEL_8,
+  "1. See all the capital letters.\n",
+  "1. ",
+  "1. Github commits are verified.\n",
+  "1. BS",
 ];
 
 app.get("/", (req, res) => {
@@ -117,7 +113,7 @@ app.post("/answer", verifyToken, async (req, res) => {
   try {
     const { username, level, flag } = req.body;
 
-    if (level >= 8 || flag !== ANS[level - 1]) {
+    if (level >= 8 || flag !== "sherlocked{" + ANS[level - 1] + "}") {
       res.status(403).json({ message: "Wrong answer..." });
     }
 
