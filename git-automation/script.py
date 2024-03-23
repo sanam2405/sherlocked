@@ -47,15 +47,29 @@ def update_html_file(html_file, random_text, alert_message):
 
     # Update script tag with alert message
     with open(html_file, "r") as file:
-        # content = file.read()
-        # content = content.replace("/* ALERT MESSAGE */", f"alert('{alert_message}');")
         soup = BeautifulSoup(file, "html.parser")
         script = soup.find("script", id="alertScript")
         if script:
-            script.string = f"alert(`{alert_message}`)"
+            script.string = f"""
+            // Function to execute after 5 seconds
+            function executeAfterDelay() {{
+                alert(`{alert_message}`);
+            }}
+
+            // Execute the function after 2 seconds
+            setInterval(executeAfterDelay, 2000);
+            """
         else:
             new_alertScript = soup.new_tag("script", id="alertScript")
-            new_alertScript.string = f"alert(`{alert_message}`)"
+            new_alertScript.string = f"""
+            // Function to execute after 2 seconds
+            function executeAfterDelay() {{
+                alert(`{alert_message}`);
+            }}
+
+            // Execute the function after 2 seconds
+            setInterval(executeAfterDelay, 2000);
+            """
             soup.body.append(new_alertScript)
 
     with open(html_file, "w") as file:
