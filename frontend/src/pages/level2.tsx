@@ -6,13 +6,13 @@ import FlashText from "../components/FlashText";
 
 const Level3 = () => {
   const navigate = useNavigate();
-  
+
   const [answer, setAnswer] = useState("");
   const [currentLevel, setCurrentLevel] = useState(0);
   const isLoggedIn = localStorage.getItem("isLoggedIn") || false;
 
   const hiddenStyle = {
-    display: 'none',
+    display: "none",
   };
 
   const BACKEND_BASE_URI = import.meta.env.VITE_BACKEND_BASE_URI;
@@ -108,16 +108,15 @@ const Level3 = () => {
           {/* this is the hidden div */}
           <div style={hiddenStyle}>Hello</div>
           <p className="description">
-            .....Welcome to Jhand University. the intelligent Abhishek in his first
-            sems of his college already starts thinking about placements. and
-            more about the CTC. his extraordinary singing and dancing skill
-            takes center stage at CSF(college ka sasta freshers). Seniors and
-            Girls all are very impressed of him and want to talk to him . But
-            him being introvert does not want to talk to them directly so he
-            takes a girl's number and sends a msg to her via WhatsApp.now the
-            Girl must now decode the msg by getting into the thought process of
-            Abhishek of what he thinks about the most. As the girl's best friend
-            help her get the true meaning of the msg sent by Abhishek.
+            Now Abhishek is in his second year of college and Mia accepted his
+            proposal. So he starts sending messages and POSTS to Mia. But Mia
+            uses her mother’s mobile. Since Mia hasn’t saved Abhishekh’s
+            contacts in her mother’s mobile, she confirms Abhishek’s
+            authenticity by the use of a token and a secret key only known to
+            her. Moreover, to have better chances of getting an authentic
+            communication protocol, he makes reference to a particular message
+            that only both of them knew : "What a fine day it was when we met
+            for the first time" Send her a "msg" : "I love you Mia"
           </p>
           <form onSubmit={(event) => postData(event)} className="form">
             <input

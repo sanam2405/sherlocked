@@ -169,7 +169,7 @@ app.post("/flirt", (req, res) => {
     // console.log(generatedToken);
 
     if (verify) {
-      res.status(200).json({ flag: ANS[1] });
+      res.status(200).json({ hibrewFlag: "YmlyaXlhbmlNb25zdGVy" });
     } else {
       res.status(400).json({ message: "Couldn't get it..." });
     }
