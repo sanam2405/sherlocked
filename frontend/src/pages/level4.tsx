@@ -5,7 +5,7 @@ import HttpStatusCode from "../constants/HttpStatusCodes";
 
 const Level3 = () => {
   const navigate = useNavigate();
-  
+
   const [answer, setAnswer] = useState("");
   const [currentLevel, setCurrentLevel] = useState(0);
   const isLoggedIn = localStorage.getItem("isLoggedIn") || false;
@@ -99,23 +99,33 @@ const Level3 = () => {
   return (
     <>
       {isLoggedIn === "true" && currentLevel >= 2 ? (
-        <div className="l0-container">
+        <div className="l3-container">
           <p className="description">
-            Welcome to Jhand University. the intelligent Abhishek in his first
-            sems of his college already starts thinking about placements. and
-            more about the CTC. his extraordinary singing and dancing skill
-            takes center stage at CSF(college ka sasta freshers). Seniors and
-            Girls all are very impressed of him and want to talk to him . But
-            him being introvert does not want to talk to them directly so he
-            takes a girl's number and sends a msg to her via WhatsApp.now the
-            Girl must now decode the msg by getting into the thought process of
-            Abhishek of what he thinks about the most. As the girl's best friend
-            help her get the true meaning of the msg sent by Abhishek.
+            Mia’s parents are away from home and she has called Abhishek to come
+            over for Netflix and chill. She has sent him the following audio
+            clip to get to her home.
           </p>
+          <audio controls>
+            <source src="/morse.wav" type="audio/wav" />
+            Your browser does not support the audio element.
+          </audio>
+
+          <p className="description">
+            Moreover, Mia is a Thala (MS Dhoni) fan so she has shortened her
+            address into a bitly link and sent it to Abhishek to help him reach
+            there. Once reaching her home, Abhishekh gets to know about a really
+            dark history about Mia. He gets to see her hidden diary. On turning
+            through the pages, he gets to know about Mia’s ex and her entries
+            about her past relationship. Mia always used to mention about a
+            special date to Abhishek and it turns out to be the date where she
+            broke up with her ex. On which date did she break up?
+          </p>
+
           <form onSubmit={(event) => postData(event)} className="form">
             <input
               type="text"
               value={answer}
+              placeholder="sherlocked{24052001}"
               onChange={(e) => setAnswer(e.target.value)}
               className="input-box"
             />

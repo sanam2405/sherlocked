@@ -2,10 +2,11 @@ import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/level2.css";
 import HttpStatusCode from "../constants/HttpStatusCodes";
+import FlashText from "../components/FlashText";
 
 const Level3 = () => {
   const navigate = useNavigate();
-  
+
   const [answer, setAnswer] = useState("");
   const [currentLevel, setCurrentLevel] = useState(0);
   const isLoggedIn = localStorage.getItem("isLoggedIn") || false;
@@ -96,21 +97,37 @@ const Level3 = () => {
     return () => clearInterval(hintTime);
   }, []);
 
+  interface BoldCharProps {
+    char: string;
+  }
+
+  const BoldChar: React.FC<BoldCharProps> = ({ char }) => {
+    return (
+      <>
+        <span style={{ fontWeight: "bold", color: "red" }}>{char}</span>
+      </>
+    );
+  };
+
   return (
     <>
       {isLoggedIn === "true" && currentLevel >= 2 ? (
-        <div className="l0-container">
+        <div className="l2-container">
           <p className="description">
-            Welcome to Jhand University. the intelligent Abhishek in his first
-            sems of his college already starts thinking about placements. and
-            more about the CTC. his extraordinary singing and dancing skill
-            takes center stage at CSF(college ka sasta freshers). Seniors and
-            Girls all are very impressed of him and want to talk to him . But
-            him being introvert does not want to talk to them directly so he
-            takes a girl's number and sends a msg to her via WhatsApp.now the
-            Girl must now decode the msg by getting into the thought process of
-            Abhishek of what he thinks about the most. As the girl's best friend
-            help her get the true meaning of the msg sent by Abhishek.
+            Spending too much time on Rabindra Sarovar with Mia, Abhishek now
+            realizes that he is not prepared for placements. So he starts
+            upskill his development skills. He starts watching YouTube tutorials
+            and demonstrations but is unable to make a good project. Eventually
+            after trying a lot, he decided to use the most secretive and
+            effective power that we all engineers have. Cmd / Ctrl + C Cmd /
+            Ctrl + V So he digs up GitHub to explore and get inspired by some
+            open source projects and level up his resume. While crawling the
+            nooks and corners, he stumbled upon a curious message within a
+            project's README.md file:
+            "205190311941271283114715981861091941283720 Eager to unravel the
+            mystery? Decrypt me! The <BoldChar char="221" />
+            st commit was <BoldChar char="verified" /> at <BoldChar char="11" />{" "}
+            PM." Can you help Abhishek to unveil the secrets of the project.
           </p>
           <form onSubmit={(event) => postData(event)} className="form">
             <input
@@ -123,7 +140,7 @@ const Level3 = () => {
               Submit
             </button>
           </form>
-          {/* <FlashText text="H" /> */}
+          <FlashText text="u" />
         </div>
       ) : (
         <div></div>

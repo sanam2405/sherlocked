@@ -97,21 +97,45 @@ const Level1 = () => {
     return () => clearInterval(hintTime);
   }, []);
 
+  interface BoldCharProps {
+    char: string;
+  }
+
+  const BoldChar: React.FC<BoldCharProps> = ({ char }) => {
+    return (
+      <>
+        <span style={{ fontWeight: "bold", color: "red" }}>{char}</span>
+      </>
+    );
+  };
+
   return (
     <>
       {isLoggedIn === "true" && currentLevel >= 0 ? (
         <div className="l0-container">
           <p className="description">
-            Welcome to Jhand University. the intelligent Abhishek in his first
-            sems of his college already starts thinking about placements. and
-            more about the CTC. his extraordinary singing and dancing skill
-            takes center stage at CSF(college ka sasta freshers). Seniors and
-            Girls all are very impressed of him and want to talk to him . But
-            him being introvert does not want to talk to them directly so he
-            takes a girl's number and sends a msg to her via WhatsApp.now the
-            Girl must now decode the msg by getting into the thought process of
-            Abhishek of what he thinks about the most. As the girl's best friend
-            help her get the true meaning of the msg sent by Abhishek.
+            <BoldChar char="W" />
+            elcome to <BoldChar char="J" />
+            hand <BoldChar char="U" />
+            niversity. the intelligent <BoldChar char="A" />
+            bhishek in his first year of college already starts thinking less about
+            placements and more about the <BoldChar char="CTC" />. his
+            extraordinary singing and dancing skill takes center stage at{" "}
+            <BoldChar char="CSF" />
+            (college ka sasta freshers). <BoldChar char="S" />
+            eniors and <BoldChar char="G" />
+            irls all are very impressed by him and want to talk to him .{" "}
+            <BoldChar char="B" />
+            ut him being introvert does not want to talk to them directly so he
+            takes a girl's number (the name of the girl is mia) and sends a
+            message to her via <BoldChar char="W" />
+            hatsApp.now the <BoldChar char="G" />
+            irl must decode the message by getting into the thought process
+            of <BoldChar char="A" />
+            bhishek of what he thinks about the most. <BoldChar char="A" />s the
+            girl's videographer, help her get the true meaning of the message
+            sent by <BoldChar char="A" />
+            bhishek.
           </p>
           <form onSubmit={(event) => postData(event)} className="form">
             <input
@@ -124,7 +148,7 @@ const Level1 = () => {
               Submit
             </button>
           </form>
-          <FlashText text="H" />
+          <FlashText text="6" />
         </div>
       ) : (
         <div></div>

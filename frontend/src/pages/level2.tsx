@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/level2.css";
 import HttpStatusCode from "../constants/HttpStatusCodes";
+import FlashText from "../components/FlashText";
 
 const Level3 = () => {
   const navigate = useNavigate();
@@ -9,6 +10,10 @@ const Level3 = () => {
   const [answer, setAnswer] = useState("");
   const [currentLevel, setCurrentLevel] = useState(0);
   const isLoggedIn = localStorage.getItem("isLoggedIn") || false;
+
+  const hiddenStyle = {
+    display: 'none',
+  };
 
   const BACKEND_BASE_URI = import.meta.env.VITE_BACKEND_BASE_URI;
 
@@ -99,9 +104,11 @@ const Level3 = () => {
   return (
     <>
       {isLoggedIn === "true" && currentLevel >= 1 ? (
-        <div className="l0-container">
+        <div className="l1-container">
+          {/* this is the hidden div */}
+          <div style={hiddenStyle}>Hello</div>
           <p className="description">
-            Welcome to Jhand University. the intelligent Abhishek in his first
+            .....Welcome to Jhand University. the intelligent Abhishek in his first
             sems of his college already starts thinking about placements. and
             more about the CTC. his extraordinary singing and dancing skill
             takes center stage at CSF(college ka sasta freshers). Seniors and
@@ -123,7 +130,7 @@ const Level3 = () => {
               Submit
             </button>
           </form>
-          {/* <FlashText text="H" /> */}
+          <FlashText text="h" />
         </div>
       ) : (
         <div></div>
