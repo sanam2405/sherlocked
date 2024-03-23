@@ -1,70 +1,37 @@
-import { useContext, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/level1.css";
+import "../styles/level2.css";
 import HttpStatusCode from "../constants/HttpStatusCodes";
-import { LoginContext } from "../context/LoginContext";
 
-const Level2 = () => {
+const Level3 = () => {
+  const navigate = useNavigate();
+  
   const [answer, setAnswer] = useState("");
-  const navigateTo = useNavigate();
+  const [currentLevel, setCurrentLevel] = useState(0);
+  const isLoggedIn = localStorage.getItem("isLoggedIn") || false;
 
-  const { setCurrentLevel, setLoginCompleted, currentLevel, loginCompleted } =
-    useContext(LoginContext);
   const BACKEND_BASE_URI = import.meta.env.VITE_BACKEND_BASE_URI;
 
-  const getUserDetails = async (usr: string) => {
-    try {
-      const response = await fetch(`${BACKEND_BASE_URI}/user`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: usr,
-        }),
-      });
-      const { status } = response;
-      const jsonData = await response.json();
-      if (status === HttpStatusCode.OK) {
-        // notifyA(`Welcome ${jsonData.username}`)
-        setLoginCompleted(true);
-        setCurrentLevel(jsonData.level);
-        localStorage.setItem("user", JSON.stringify(jsonData.username));
-      }
-    } catch (error) {
-      console.log(error);
-      // notifyB('Enter valid login details...')
-    }
-  };
-
-  useEffect(() => {
-    const usr = localStorage.getItem("user");
-    if (usr != null) {
-      getUserDetails(usr);
-    }
-  }, [currentLevel]);
-
-  // API calls
-
-  const handleAnswer = async (usr: string) => {
+  const postData = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+    event.preventDefault();
     try {
       const response = await fetch(`${BACKEND_BASE_URI}/answer`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         },
         body: JSON.stringify({
-          username: usr,
-          level: currentLevel,
+          username: localStorage.getItem("user"),
+          level: 2,
           flag: answer,
         }),
       });
       const { status } = response;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const jsonData = await response.json();
       if (status === HttpStatusCode.OK) {
-        // notifyA(`Welcome ${jsonData.username}`)
-        setCurrentLevel(jsonData.level);
-        navigateTo("/level-2"); // Navigate to the next level
+        navigate("/level-3"); // Navigate to the next level
       }
     } catch (error) {
       console.log(error);
@@ -72,35 +39,80 @@ const Level2 = () => {
     }
   };
 
-  useEffect(() => {
-    handleAnswer(usr);
-  }, []);
+  const getUserDetails = async () => {
+    try {
+      const response = await fetch(`${BACKEND_BASE_URI}/user`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+        body: JSON.stringify({
+          username: localStorage.getItem("user"),
+        }),
+      });
 
-  // const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   if (answer.trim().toLowerCase() === 'correct') {
-  //     setCurrentLevel(2)
-  //     navigateTo('/level-2'); // Navigate to the next level
-  //   } else {
-  //     alert('Incorrect answer. Please try again.');
-  //   }
-  // };
+      const { status } = response;
+      const jsonData = await response.json();
+
+      if (status === HttpStatusCode.OK) {
+        setCurrentLevel(jsonData.level);
+      } else {
+        navigate("/error-page");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getHint = async () => {
+    try {
+      const response = await fetch(`${BACKEND_BASE_URI}/hint`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+        body: JSON.stringify({
+          level: 2,
+        }),
+      });
+      const { status } = response;
+      const jsonData = await response.json();
+      if (status === HttpStatusCode.OK) {
+        alert(jsonData.hint);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    // get the user details from db
+    getUserDetails();
+
+    const hintTime = setTimeout(getHint, 1200000);
+
+    return () => clearInterval(hintTime);
+  }, []);
 
   return (
     <>
-      {loginCompleted && currentLevel <= 1 ? (
-        <div className="l1-container">
+      {isLoggedIn === "true" && currentLevel >= 1 ? (
+        <div className="l0-container">
           <p className="description">
-            Into his 2nd sem nowwww, Abhishek started learning about different
-            topics. The one which interested him the most was Web development .
-            He started looking for articles and blogs everywhere on the internet
-            and he was too delighted by the fact that some developers have the
-            extinct of extracting out hidden information from web sites and all.
-            You, Abhishek being an avid lover of such things and since it is
-            your thing ,you try using some of the learnings from the articles on
-            this particular web page you see.
+            Welcome to Jhand University. the intelligent Abhishek in his first
+            sems of his college already starts thinking about placements. and
+            more about the CTC. his extraordinary singing and dancing skill
+            takes center stage at CSF(college ka sasta freshers). Seniors and
+            Girls all are very impressed of him and want to talk to him . But
+            him being introvert does not want to talk to them directly so he
+            takes a girl's number and sends a msg to her via WhatsApp.now the
+            Girl must now decode the msg by getting into the thought process of
+            Abhishek of what he thinks about the most. As the girl's best friend
+            help her get the true meaning of the msg sent by Abhishek.
           </p>
-          <form onSubmit={() => handleAnswer} className="form">
+          <form onSubmit={(event) => postData(event)} className="form">
             <input
               type="text"
               value={answer}
@@ -111,6 +123,7 @@ const Level2 = () => {
               Submit
             </button>
           </form>
+          {/* <FlashText text="H" /> */}
         </div>
       ) : (
         <div></div>
@@ -119,4 +132,4 @@ const Level2 = () => {
   );
 };
 
-export default Level2;
+export default Level3;

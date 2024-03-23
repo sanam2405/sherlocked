@@ -128,7 +128,7 @@ app.post("/answer", verifyToken, async (req, res) => {
     if (user.level < level - 1)
       res.status(401).json({ message: "Unauthorized..." });
 
-    user.level = Math.min(level, 8);
+    user.level = Math.min(level, 4);
     user.completionTime = new Date().getTime();
 
     await user.save();
@@ -159,6 +159,24 @@ app.post("/user", verifyToken, async (req, res) => {
     if (!user) return res.status(404).json({ message: "User not found" });
 
     res.status(200).json({ level: user.level });
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.post("/flirt", (req, res) => {
+  try {
+    const { token } = req.body;
+
+    const verify = jwt.verify(token, process.env.REVERSE_JWT_SECRET);
+
+    // console.log(generatedToken);
+
+    if (verify) {
+      res.status(200).json({ flag: ANS[1] });
+    } else {
+      res.status(400).json({ message: "Couldn't get it..." });
+    }
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
