@@ -106,7 +106,7 @@ const Level3 = () => {
             clip to get to her home.
           </p>
           <audio controls>
-            <source src="/morse.wav" type="audio/wav" />
+            <source src="/tapsound.mp3" type="audio/mp3" />
             Your browser does not support the audio element.
           </audio>
 
