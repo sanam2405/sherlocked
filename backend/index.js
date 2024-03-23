@@ -108,7 +108,7 @@ app.post("/login", async (req, res) => {
       token,
     });
   } catch (error) {
-    res.status(500).json({ error: err.message, message: "login error" });
+    res.status(500).json({ message: "login error" });
   }
 });
 
@@ -133,7 +133,7 @@ app.post("/answer", verifyToken, async (req, res) => {
 
     await user.save();
 
-    console.log(req.user);
+    // console.log(req.user);
     res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
