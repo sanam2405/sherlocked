@@ -31,7 +31,7 @@ const Level3 = () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       // const jsonData = await response.json();
       if (status === HttpStatusCode.OK) {
-        navigate("/level-1"); // Navigate to the next level
+        navigate("/congratulations"); // Navigate to the next level
       }
     } catch (error) {
       console.log(error);
@@ -114,7 +114,7 @@ const Level3 = () => {
             <br></br>
             {/* <p className="description"> */}
             Moreover, Mia is a Thala (MS Dhoni) fan so she has shortened her
-            address into a bitly link and sent it to Abhishek to help him reach
+            address into a bit.ly link and sent it to Abhishek to help him reach
             there. <br></br>
             <br></br>Once reaching her home, Abhishekh gets to know about a
             really dark history about Mia. He gets to see her hidden diary. On
