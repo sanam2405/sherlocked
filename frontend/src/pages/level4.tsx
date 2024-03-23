@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/level3.css";
 import HttpStatusCode from "../constants/HttpStatusCodes";
+import { TIME_TO_HINT } from "../constants";
 
 const Level3 = () => {
   const navigate = useNavigate();
@@ -91,7 +92,7 @@ const Level3 = () => {
     // get the user details from db
     getUserDetails();
 
-    const hintTime = setTimeout(getHint, 1200000);
+    const hintTime = setTimeout(getHint, TIME_TO_HINT);
 
     return () => clearInterval(hintTime);
   }, []);
