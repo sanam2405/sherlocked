@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/level2.css";
+import "../styles/level1.css";
 import HttpStatusCode from "../constants/HttpStatusCodes";
 import FlashText from "../components/FlashText";
 

@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/level2.css";
+import "../styles/level3.css";
 import HttpStatusCode from "../constants/HttpStatusCodes";
 
 const Level3 = () => {
@@ -104,21 +104,25 @@ const Level3 = () => {
             Mia’s parents are away from home and she has called Abhishek to come
             over for Netflix and chill. She has sent him the following audio
             clip to get to her home.
-          </p>
-          <audio controls>
-            <source src="/tapsound.mp3" type="audio/mp3" />
-            Your browser does not support the audio element.
-          </audio>
-
-          <p className="description">
+            {/* </p> */}
+            <br></br>
+            <br></br>
+            <audio controls>
+              <source src="/secretaudio.mp3" type="audio/mp3" />
+              Your browser does not support the audio element.
+            </audio>
+            <br></br>
+            {/* <p className="description"> */}
             Moreover, Mia is a Thala (MS Dhoni) fan so she has shortened her
             address into a bitly link and sent it to Abhishek to help him reach
-            there. Once reaching her home, Abhishekh gets to know about a really
-            dark history about Mia. He gets to see her hidden diary. On turning
-            through the pages, he gets to know about Mia’s ex and her entries
-            about her past relationship. Mia always used to mention about a
-            special date to Abhishek and it turns out to be the date where she
-            broke up with her ex. On which date did she break up?
+            there. <br></br>
+            <br></br>Once reaching her home, Abhishekh gets to know about a
+            really dark history about Mia. He gets to see her hidden diary. On
+            turning through the pages, he gets to know about Mia’s ex and her
+            entries about her past relationship. Mia always used to mention
+            about a special date to Abhishek and it might just turn out to be
+            the date where she broke up with her ex. Being a possessive boyfriend,
+            he wants to know on which date Mia broke up?
           </p>
 
           <form onSubmit={(event) => postData(event)} className="form">
