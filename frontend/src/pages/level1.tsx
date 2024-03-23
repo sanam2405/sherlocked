@@ -30,7 +30,7 @@ const Level1 = () => {
       });
       const { status } = response;
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const jsonData = await response.json();
+      // const jsonData = await response.json();
       if (status === HttpStatusCode.OK) {
         navigate("/level-2"); // Navigate to the next level
       }
