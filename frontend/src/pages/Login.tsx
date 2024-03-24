@@ -40,7 +40,7 @@ const Login = () => {
 					notifySuccess('Welcome to Sherlocked 2024')
 					localStorage.setItem('isLoggedIn', 'true')
 					navigate('/level-1')
-				}, 2000)
+				}, 500)
 			}
 		} catch (error) {
 			alert("That's what she said")
