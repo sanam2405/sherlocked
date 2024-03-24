@@ -109,7 +109,7 @@ app.post('/answer', verifyToken, async (req, res) => {
 	try {
 		const { username, level, flag } = req.body
 
-		if (level >= 4 || flag !== 'sherlocked{' + ANS[level - 1] + '}') {
+		if (level >= 4 || flag.trim() !== 'sherlocked{' + ANS[level - 1] + '}') {
 			res.status(403).json({ message: 'Wrong answer...' })
 		}
 
