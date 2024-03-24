@@ -14,7 +14,7 @@ const verifyToken = async (req, res, next) => {
 		req.user = verified
 		next()
 	} catch (err) {
-		res.status(500).json({ error: err.message })
+		return res.status(500).json({ error: err.message })
 	}
 }
 

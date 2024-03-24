@@ -30,7 +30,7 @@ const HINTS = [
 ]
 
 app.get('/', (req, res) => {
-	res.json('Server is running')
+	return res.json('Server is running')
 })
 
 app.post('/register', async (req, res) => {
@@ -38,12 +38,12 @@ app.post('/register', async (req, res) => {
 		const { username, password } = req.body
 
 		if (!(username && password)) {
-			res.status(400).json({ message: 'All fields are required...' })
+			return res.status(400).json({ message: 'All fields are required...' })
 		}
 
 		const exists = await User.findOne({ username })
 		if (exists) {
-			res.status(401).json('User already exists...')
+			return res.status(401).json('User already exists...')
 		}
 
 		const encryptedPassword = await bcrypt.hash(password, 10)
@@ -60,7 +60,7 @@ app.post('/register', async (req, res) => {
 			expiresIn: '3h',
 		})
 
-		res.status(201).json({
+		return res.status(201).json({
 			_id: user._id,
 			username: user.username,
 			level: user.level,
@@ -68,7 +68,9 @@ app.post('/register', async (req, res) => {
 			token,
 		})
 	} catch (error) {
-		res.status(500).json({ error: err.message, message: 'register error' })
+		return res
+			.status(500)
+			.json({ error: err.message, message: 'register error' })
 	}
 })
 
@@ -76,7 +78,7 @@ app.post('/login', async (req, res) => {
 	try {
 		const { username, password } = req.body
 		if (!(username && password)) {
-			res.status(400).json({ message: 'All fields are required...' })
+			return res.status(400).json({ message: 'All fields are required...' })
 		}
 
 		const user = await User.findOne({ username })
@@ -84,7 +86,7 @@ app.post('/login', async (req, res) => {
 		if (!user) return res.status(404).json({ message: 'User not found' })
 
 		const check = await bcrypt.compare(password, user.password)
-		if (!check) res.status(401).json({ message: 'Wrong password' })
+		if (!check) return res.status(401).json({ message: 'Wrong password' })
 
 		const token = jwt.sign({ id: user._id, username }, process.env.JWT_SECRET, {
 			expiresIn: '3h',
@@ -94,7 +96,7 @@ app.post('/login', async (req, res) => {
 		//   // expires: new Date(Date.now() + )
 		// }
 
-		res.status(201).json({
+		return res.status(201).json({
 			_id: user._id,
 			username: user.username,
 			level: user.level,
@@ -102,7 +104,7 @@ app.post('/login', async (req, res) => {
 			token,
 		})
 	} catch (error) {
-		res.status(500).json({ message: 'login error' })
+		return res.status(500).json({ message: 'login error' })
 	}
 })
 
@@ -114,7 +116,7 @@ app.post('/answer', verifyToken, async (req, res) => {
 		if (level > 4 || flag.trim() !== 'sherlocked{' + ANS[level - 1] + '}') {
 			// console.log(typeof('sherlocked{' + ANS[level - 1] + '}'));
 			// console.log(typeof(flag));
-			res.status(403).json({ message: 'Wrong answer...' })
+			return res.status(403).json({ message: 'Wrong answer...' })
 		}
 
 		const user = await User.findOne({ username })
@@ -122,7 +124,7 @@ app.post('/answer', verifyToken, async (req, res) => {
 		if (!user) return res.status(404).json({ message: 'User not found' })
 
 		if (user.level < level - 1)
-			res.status(401).json({ message: 'Unauthorized...' })
+			return res.status(401).json({ message: 'Unauthorized...' })
 
 		user.level = Math.min(level, 4)
 		user.completionTime = new Date().getTime()
@@ -130,20 +132,20 @@ app.post('/answer', verifyToken, async (req, res) => {
 		await user.save()
 
 		// console.log(req.user);
-		res.status(200).json(user)
+		return res.status(200).json(user)
 	} catch (error) {
-		res.status(500).json({ message: 'Internal server error' })
+		return res.status(500).json({ message: 'Internal server error' })
 	}
 })
 
 app.post('/hint', verifyToken, (req, res) => {
 	try {
 		const { level } = req.body
-		if (level >= 4) res.status(404).json({ message: 'Level not found' })
+		if (level > 4) return res.status(404).json({ message: 'Level not found' })
 
-		res.status(200).json({ hint: HINTS[level - 1] })
+		return res.status(200).json({ hint: HINTS[level - 1] })
 	} catch (error) {
-		res.status(500).json({ message: 'Internal server error' })
+		return res.status(500).json({ message: 'Internal server error' })
 	}
 })
 
@@ -155,9 +157,9 @@ app.post('/user', verifyToken, async (req, res) => {
 
 		if (!user) return res.status(404).json({ message: 'User not found' })
 
-		res.status(200).json({ level: user.level })
+		return res.status(200).json({ level: user.level })
 	} catch (error) {
-		res.status(500).json({ message: 'Internal server error' })
+		return res.status(500).json({ message: 'Internal server error' })
 	}
 })
 
@@ -170,12 +172,12 @@ app.post('/flirt', (req, res) => {
 		// console.log(generatedToken);
 
 		if (verify) {
-			res.status(200).json({ hibrewFlag: 'YmlyaXlhbmlNb25zdGVy' })
+			return res.status(200).json({ hibrewFlag: 'YmlyaXlhbmlNb25zdGVy' })
 		} else {
-			res.status(400).json({ message: "Couldn't get it..." })
+			return res.status(400).json({ message: "Couldn't get it..." })
 		}
 	} catch (error) {
-		res.status(500).json({ message: 'Internal server error' })
+		return res.status(500).json({ message: 'Internal server error' })
 	}
 })
 
