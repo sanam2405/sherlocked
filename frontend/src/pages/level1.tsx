@@ -30,9 +30,11 @@ const Level1 = () => {
       });
       const { status } = response;
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      // const jsonData = await response.json();
+      const jsonData = await response.json();
       if (status === HttpStatusCode.OK) {
         navigate("/level-2"); // Navigate to the next level
+      } else {
+        alert(jsonData.message)
       }
     } catch (error) {
       console.log(error);
@@ -118,8 +120,8 @@ const Level1 = () => {
             elcome to <BoldChar char="J" />
             hand <BoldChar char="U" />
             niversity. the intelligent <BoldChar char="A" />
-            bhishek in his first year of college already starts thinking less about
-            placements and more about the <BoldChar char="CTC" />. his
+            bhishek in his first year of college already starts thinking less
+            about placements and more about the <BoldChar char="CTC" />. his
             extraordinary singing and dancing skill takes center stage at{" "}
             <BoldChar char="CSF" />
             (college ka sasta freshers). <BoldChar char="S" />
@@ -130,8 +132,8 @@ const Level1 = () => {
             takes a girl's number (the name of the girl is mia) and sends a
             message to her via <BoldChar char="W" />
             hatsApp.now the <BoldChar char="G" />
-            irl must decode the message by getting into the thought process
-            of <BoldChar char="A" />
+            irl must decode the message by getting into the thought process of{" "}
+            <BoldChar char="A" />
             bhishek of what he thinks about the most. <BoldChar char="A" />s the
             girl's videographer, help her get the true meaning of the message
             sent by <BoldChar char="A" />
@@ -141,6 +143,7 @@ const Level1 = () => {
             <input
               type="text"
               value={answer}
+              placeholder="sherlocked{flag}"
               onChange={(e) => setAnswer(e.target.value)}
               className="input-box"
             />

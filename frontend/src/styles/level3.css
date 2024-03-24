@@ -26,13 +26,17 @@
 }
 
 .input-box {
-  width: 300px;
-  height: 20px;
+  width: 500px;
+  height: 30px;
   padding: 10px;
   margin-bottom: 20px;
   border: none;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.3); /* Transparent white */
+  font-size: 20px;
+  letter-spacing: 2px;
+  font-family: "Edu NSW ACT Foundation", cursive;
+  font-weight: 400;
+  background-color: rgba(255, 255, 255); /* Transparent white */
   color: #0b2145; /* Dark blue text color */
   display: block;
 }
@@ -44,7 +48,7 @@
   background-color: #e30f59; /* Blood red color */
   color: white; /* White text color */
   font-weight: bold;
-  margin-left: 120px;
+  /* margin-left: 120px; */
   cursor: pointer;
 }
 

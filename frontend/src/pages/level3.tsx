@@ -124,15 +124,19 @@ const Level3 = () => {
             open source projects and level up his resume. While crawling the
             nooks and corners, he stumbled upon a curious message within a
             project's README.md file:
-            "205190311941271283114715981861091941283720 Eager to unravel the
-            mystery? Decrypt me! The <BoldChar char="221" />
+            <br></br>
+            codes = 205,190,31,194,127,215,147,15,98,186,109,194,37,20 Eager to
+            unravel the mystery? Decrypt me! The <BoldChar char="221" />
             st commit was <BoldChar char="verified" /> at <BoldChar char="11" />{" "}
-            PM." Can you help Abhishek to unveil the secrets of the project.
+            PM.
+            <br></br>
+            Can you help Abhishek to unveil the secrets of the project.
           </p>
           <form onSubmit={(event) => postData(event)} className="form">
             <input
               type="text"
               value={answer}
+              placeholder="sherlocked{flag}"
               onChange={(e) => setAnswer(e.target.value)}
               className="input-box"
             />

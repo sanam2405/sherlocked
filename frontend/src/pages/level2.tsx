@@ -122,6 +122,7 @@ const Level3 = () => {
             <input
               type="text"
               value={answer}
+              placeholder="sherlocked{flag}"
               onChange={(e) => setAnswer(e.target.value)}
               className="input-box"
             />

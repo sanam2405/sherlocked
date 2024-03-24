@@ -16,7 +16,7 @@ const FlashText: React.FC<FlashTextProps> = ({ text }) => {
     const maxY: number = window.innerHeight - 50; // Adjust as needed for text height
     const x: number = Math.floor(Math.random() * maxX);
     const y: number = Math.floor(Math.random() * maxY);
-    return { left: x, top: y, font: "20px" };
+    return { left: x, top: y, fontSize: "80px", color: "green", fontWeight: "700" };
   };
 
   useEffect(() => {
