@@ -1,13 +1,13 @@
 .error-container {
-  /* background-image: none; */
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	/* background-image: none; */
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .error-gif {
-  height: 50%;
-  width: 50%;
+	height: 50%;
+	width: 50%;
 }
