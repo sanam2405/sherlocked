@@ -124,7 +124,8 @@ const Level2 = () => {
 						Oops the message sank into this page
 						<span style={{ display: 'none' }}>
 							"What a fine day it was when we met for the first time" Send her a
-							"msg" : "I love you Mia" to our backend route /flirt
+							POST request to our backend route /flirt with the payload "msg" :
+							"I love you Mia"
 						</span>
 					</p>
 					<form onSubmit={event => postData(event)} className='form'>
