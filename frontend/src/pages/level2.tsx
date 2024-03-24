@@ -5,7 +5,7 @@ import HttpStatusCode from '../constants/HttpStatusCodes'
 import FlashText from '../components/FlashText'
 import { TIME_TO_HINT } from '../constants'
 
-const Level3 = () => {
+const Level2 = () => {
 	const navigate = useNavigate()
 
 	const [answer, setAnswer] = useState('')
@@ -148,4 +148,4 @@ const Level3 = () => {
 	)
 }
 
-export default Level3
+export default Level2

@@ -4,7 +4,7 @@ import '../styles/level3.css'
 import HttpStatusCode from '../constants/HttpStatusCodes'
 import { TIME_TO_HINT } from '../constants'
 
-const Level3 = () => {
+const Level4 = () => {
 	const navigate = useNavigate()
 
 	const [answer, setAnswer] = useState('')
@@ -149,4 +149,4 @@ const Level3 = () => {
 	)
 }
 
-export default Level3
+export default Level4

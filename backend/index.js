@@ -20,6 +20,8 @@ const ANS = [
 	process.env.LEVEL_4,
 ]
 
+// console.log(ANS);
+
 const HINTS = [
 	'1. See all the capital letters.\n',
 	'1. ',
@@ -109,7 +111,9 @@ app.post('/answer', verifyToken, async (req, res) => {
 	try {
 		const { username, level, flag } = req.body
 
-		if (level >= 4 || flag.trim() !== 'sherlocked{' + ANS[level - 1] + '}') {
+		if (level > 4 || flag.trim() !== 'sherlocked{' + ANS[level - 1] + '}') {
+			// console.log(typeof('sherlocked{' + ANS[level - 1] + '}'));
+			// console.log(typeof(flag));
 			res.status(403).json({ message: 'Wrong answer...' })
 		}
 
