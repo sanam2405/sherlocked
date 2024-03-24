@@ -1,9 +1,10 @@
 .congratulations-container {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   height: 100vh;
+  width: 100vw;
   /*background-color: #0b2145; /* Dark blue background color */
   background-image: url('../assets/congratulations.jpg'); /* Path to the image in the assets folder */
   background-repeat: no-repeat; /* Disable background repeat */

@@ -30,9 +30,11 @@ const Level3 = () => {
       });
       const { status } = response;
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      // const jsonData = await response.json();
+      const jsonData = await response.json();
       if (status === HttpStatusCode.OK) {
         navigate("/congratulations"); // Navigate to the next level
+      } else {
+        alert(jsonData.message)
       }
     } catch (error) {
       console.log(error);

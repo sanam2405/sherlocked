@@ -18,10 +18,6 @@ const ANS = [
   process.env.LEVEL_2,
   process.env.LEVEL_3,
   process.env.LEVEL_4,
-  process.env.LEVEL_5,
-  process.env.LEVEL_6,
-  process.env.LEVEL_7,
-  process.env.LEVEL_8,
 ];
 
 const HINTS = [
@@ -113,7 +109,7 @@ app.post("/answer", verifyToken, async (req, res) => {
   try {
     const { username, level, flag } = req.body;
 
-    if (level >= 8 || flag !== "sherlocked{" + ANS[level - 1] + "}") {
+    if (level >= 4 || flag !== "sherlocked{" + ANS[level - 1] + "}") {
       res.status(403).json({ message: "Wrong answer..." });
     }
 
@@ -139,6 +135,7 @@ app.post("/answer", verifyToken, async (req, res) => {
 app.post("/hint", verifyToken, (req, res) => {
   try {
     const { level } = req.body;
+    if (level >= 4) res.status(404).json({ message: "Level not found" });
 
     res.status(200).json({ hint: HINTS[level - 1] });
   } catch (error) {
@@ -181,10 +178,7 @@ app.post("/flirt", (req, res) => {
 const PORT = process.env.PORT || 5004;
 
 mongoose
-  .connect(process.env.MONGODB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGODB_URL)
   .then(() => {
     app.listen(PORT, () => {
       console.log(`server running on port: ${PORT}`);

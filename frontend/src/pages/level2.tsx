@@ -35,9 +35,11 @@ const Level3 = () => {
       });
       const { status } = response;
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      // const jsonData = await response.json();
+      const jsonData = await response.json();
       if (status === HttpStatusCode.OK) {
         navigate("/level-3"); // Navigate to the next level
+      } else {
+        alert(jsonData.message);
       }
     } catch (error) {
       console.log(error);
@@ -118,8 +120,12 @@ const Level3 = () => {
             authenticity by the use of a token and a secret key only known to
             her. Moreover, to have better chances of getting an authentic
             communication protocol, he makes reference to a particular message
-            that only both of them knew : "What a fine day it was when we met
-            for the first time" Send her a "msg" : "I love you Mia"
+            that only both of them knew :<br></br>
+            Oops the message sank into this page
+            <span style={{ display: "none" }}>
+              "What a fine day it was when we met for the first time" Send her a
+              "msg" : "I love you Mia"
+            </span>
           </p>
           <form onSubmit={(event) => postData(event)} className="form">
             <input
