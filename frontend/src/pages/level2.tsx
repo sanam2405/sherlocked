@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/level1.css";
 import HttpStatusCode from "../constants/HttpStatusCodes";
 import FlashText from "../components/FlashText";
+import { TIME_TO_HINT } from "../constants";
 
 const Level3 = () => {
   const navigate = useNavigate();
@@ -96,7 +97,7 @@ const Level3 = () => {
     // get the user details from db
     getUserDetails();
 
-    const hintTime = setTimeout(getHint, 1200000);
+    const hintTime = setTimeout(getHint, TIME_TO_HINT);
 
     return () => clearInterval(hintTime);
   }, []);
@@ -107,6 +108,8 @@ const Level3 = () => {
         <div className="l1-container">
           {/* this is the hidden div */}
           <div style={hiddenStyle}>Hello</div>
+
+          {/* This para should have been hidden */}
           <p className="description">
             Now Abhishek is in his second year of college and Mia accepted his
             proposal. So he starts sending messages and POSTS to Mia. But Mia

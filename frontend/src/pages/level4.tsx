@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/level3.css";
 import HttpStatusCode from "../constants/HttpStatusCodes";
+import { TIME_TO_HINT } from "../constants";
 
 const Level3 = () => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const Level3 = () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       // const jsonData = await response.json();
       if (status === HttpStatusCode.OK) {
-        navigate("/level-1"); // Navigate to the next level
+        navigate("/congratulations"); // Navigate to the next level
       }
     } catch (error) {
       console.log(error);
@@ -91,7 +92,7 @@ const Level3 = () => {
     // get the user details from db
     getUserDetails();
 
-    const hintTime = setTimeout(getHint, 1200000);
+    const hintTime = setTimeout(getHint, TIME_TO_HINT);
 
     return () => clearInterval(hintTime);
   }, []);
@@ -114,7 +115,7 @@ const Level3 = () => {
             <br></br>
             {/* <p className="description"> */}
             Moreover, Mia is a Thala (MS Dhoni) fan so she has shortened her
-            address into a bitly link and sent it to Abhishek to help him reach
+            address into a bit.ly link and sent it to Abhishek to help him reach
             there. <br></br>
             <br></br>Once reaching her home, Abhishekh gets to know about a
             really dark history about Mia. He gets to see her hidden diary. On

@@ -3,11 +3,17 @@ import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 import HttpStatusCode from "../constants/HttpStatusCodes";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  const notifySuccess = (message: string): void => {
+		toast.success(message)
+	}
 
   const BACKEND_BASE_URI: string = import.meta.env.VITE_BACKEND_BASE_URI;
 
@@ -31,6 +37,7 @@ const Login = () => {
         localStorage.setItem("user", jsonData.username);
         setTimeout(() => {
           console.log("Logged in!");
+          notifySuccess("Welcome to Sherlocked 2024")
           localStorage.setItem("isLoggedIn", "true");
           navigate("/level-1");
         }, 2000);
@@ -60,6 +67,7 @@ const Login = () => {
           Enter Sherlocked :){" "}
         </button>
       </form>
+      <ToastContainer autoClose={2000} theme='light' />
     </div>
   );
 };

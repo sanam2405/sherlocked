@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/level0.css";
 import HttpStatusCode from "../constants/HttpStatusCodes";
 import FlashText from "../components/FlashText";
+import { TIME_TO_HINT } from "../constants";
 
 const Level1 = () => {
   const [answer, setAnswer] = useState("");
@@ -94,7 +95,7 @@ const Level1 = () => {
     // get the user details from db
     getUserDetails();
 
-    const hintTime = setTimeout(getHint, 10000);
+    const hintTime = setTimeout(getHint, TIME_TO_HINT);
 
     return () => clearInterval(hintTime);
   }, []);
