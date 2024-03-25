@@ -2,6 +2,8 @@
 
 A race against time to observe, decipher and unveil a mysterious case
 
+![](prelims/public/sherlocked_poster.jpeg)
+
 ## Setting up locally
 
 The codebase is organized as :
@@ -9,6 +11,8 @@ The codebase is organized as :
 1. _Irene Adler_ - The frontend
 2. _Sherlock Holmes_ - The backend
 3. _Watson_ - The deprecated backend
+4. _Reverse Shell_ - TCP server for reverse shell
+5. _git-automation_ - Scripts for generating _git logs_
 
 - Clone the Sherlocked repository
 
