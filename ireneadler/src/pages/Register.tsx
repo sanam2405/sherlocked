@@ -3,8 +3,6 @@ import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../styles/Login.css'
 import HttpStatusCode from '../constants/HttpStatusCodes'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 import Loader from '../components/Loader'
 
 const Register = () => {
@@ -14,10 +12,6 @@ const Register = () => {
 	const [isLoading, setIsLoading] = useState(false)
 
 	const navigate = useNavigate()
-
-	const notifySuccess = (message: string): void => {
-		toast.success(message)
-	}
 
 	const handleLogin = () => {
 		navigate('/login')
@@ -49,6 +43,7 @@ const Register = () => {
 			if (status === HttpStatusCode.CREATED) {
 				// localStorage.setItem('jwt', jsonData.token)
 				// localStorage.setItem('user', jsonData.username)
+				console.log(jsonData.token)
 				setTimeout(() => {
 					console.log('Registered for Sherlocked 2024!')
 					// notifySuccess('Welcome to Sherlocked 2024')
@@ -96,7 +91,6 @@ const Register = () => {
 							Login{' '}
 						</button>
 					</form>
-					<ToastContainer autoClose={2000} theme='light' />
 				</div>
 			)}
 		</>
