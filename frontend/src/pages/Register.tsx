@@ -16,6 +16,10 @@ const Register = () => {
 		toast.success(message)
 	}
 
+	const handleLogin = () => {
+		navigate('/login')
+	}
+
 	const BACKEND_BASE_URI: string = import.meta.env.VITE_BACKEND_BASE_URI
 
 	const postData = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
@@ -77,6 +81,9 @@ const Register = () => {
 				/>
 				<button type='submit' className='login-button'>
 					Register for Sherlocked!{' '}
+				</button>
+				<button onClick={handleLogin} className='login-button'>
+					Login{' '}
 				</button>
 			</form>
 			<ToastContainer autoClose={2000} theme='light' />

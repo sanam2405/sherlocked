@@ -25,6 +25,3 @@ dist-ssr
 *.sw?
 
 *.env
-
-ts-backend
-nc-server

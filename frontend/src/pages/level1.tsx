@@ -4,6 +4,7 @@ import '../styles/level0.css'
 import HttpStatusCode from '../constants/HttpStatusCodes'
 import FlashText from '../components/FlashText'
 import { TIME_TO_HINT } from '../constants'
+import ErrorPage from './ErrorPage'
 
 const Level1 = () => {
 	const [answer, setAnswer] = useState('')
@@ -155,7 +156,7 @@ const Level1 = () => {
 					<FlashText text='6' />
 				</div>
 			) : (
-				<div></div>
+				<ErrorPage/>
 			)}
 		</>
 	)

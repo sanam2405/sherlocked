@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import '../styles/level3.css'
 import HttpStatusCode from '../constants/HttpStatusCodes'
 import { TIME_TO_HINT } from '../constants'
+import ErrorPage from './ErrorPage'
 
 const Level4 = () => {
 	const navigate = useNavigate()
@@ -143,7 +144,7 @@ const Level4 = () => {
 					{/* <FlashText text="H" /> */}
 				</div>
 			) : (
-				<div></div>
+				<ErrorPage/>
 			)}
 		</>
 	)

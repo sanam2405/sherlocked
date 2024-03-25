@@ -21,6 +21,7 @@ function App() {
 					<Route path='/level-3' element={<Level3 />} />
 					<Route path='/level-4' element={<Level4 />} />
 					<Route path='/congratulations' element={<CongratulationsPage />} />
+					<Route path='*' element={<ErrorPage/>} />
 				</Routes>
 			</BrowserRouter>
 		</>
