@@ -4,7 +4,7 @@ import '../styles/level1.css'
 import HttpStatusCode from '../constants/HttpStatusCodes'
 import FlashText from '../components/FlashText'
 import { TIME_TO_HINT } from '../constants'
-import ErrorPage from './ErrorPage'
+import Loader from '../components/Loader'
 
 const Level2 = () => {
 	const navigate = useNavigate()
@@ -147,7 +147,7 @@ const Level2 = () => {
 					<FlashText text='h' />
 				</div>
 			) : (
-				<ErrorPage />
+				<Loader />
 			)}
 		</>
 	)

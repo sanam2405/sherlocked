@@ -5,10 +5,13 @@ import '../styles/Login.css'
 import HttpStatusCode from '../constants/HttpStatusCodes'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Loader from '../components/Loader'
 
 const Login = () => {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
+	const [isLoading, setIsLoading] = useState(false)
+
 	const navigate = useNavigate()
 
 	const notifySuccess = (message: string): void => {
@@ -19,6 +22,7 @@ const Login = () => {
 
 	const postData = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
 		event.preventDefault()
+		setIsLoading(true)
 		try {
 			const response = await fetch(`${BACKEND_BASE_URI}/login`, {
 				method: 'POST',
@@ -44,31 +48,38 @@ const Login = () => {
 			}
 		} catch (error) {
 			alert("That's what she said")
+			setIsLoading(false)
 		}
 	}
 	return (
-		<div className='login-container'>
-			<form onSubmit={event => postData(event)} className='login-form'>
-				<input
-					type='text'
-					placeholder='Username'
-					value={username}
-					onChange={e => setUsername(e.target.value)}
-					className='login-input'
-				/>
-				<input
-					type='password'
-					placeholder='Password'
-					value={password}
-					onChange={e => setPassword(e.target.value)}
-					className='login-input'
-				/>
-				<button type='submit' className='login-button'>
-					Enter Sherlocked :){' '}
-				</button>
-			</form>
-			<ToastContainer autoClose={2000} theme='light' />
-		</div>
+		<>
+			{isLoading ? (
+				<Loader />
+			) : (
+				<div className='login-container'>
+					<form onSubmit={event => postData(event)} className='login-form'>
+						<input
+							type='text'
+							placeholder='Username'
+							value={username}
+							onChange={e => setUsername(e.target.value)}
+							className='login-input'
+						/>
+						<input
+							type='password'
+							placeholder='Password'
+							value={password}
+							onChange={e => setPassword(e.target.value)}
+							className='login-input'
+						/>
+						<button type='submit' className='login-button'>
+							Enter Sherlocked :){' '}
+						</button>
+					</form>
+					<ToastContainer autoClose={2000} theme='light' />
+				</div>
+			)}
+		</>
 	)
 }
 export default Login

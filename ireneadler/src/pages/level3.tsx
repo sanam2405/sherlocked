@@ -4,7 +4,7 @@ import '../styles/level2.css'
 import HttpStatusCode from '../constants/HttpStatusCodes'
 import FlashText from '../components/FlashText'
 import { TIME_TO_HINT } from '../constants'
-import ErrorPage from './ErrorPage'
+import Loader from '../components/Loader'
 
 const Level3 = () => {
 	const navigate = useNavigate()
@@ -62,6 +62,8 @@ const Level3 = () => {
 
 			if (status === HttpStatusCode.OK) {
 				setCurrentLevel(jsonData.level)
+				console.log('JSON DATA', jsonData)
+				console.log('JSON DATA LEVEL', jsonData.level)
 			} else {
 				navigate('/error-page')
 			}
@@ -100,6 +102,10 @@ const Level3 = () => {
 
 		return () => clearInterval(hintTime)
 	}, [])
+
+	useEffect(() => {
+		console.log('Current level ', currentLevel)
+	}, [currentLevel])
 
 	interface BoldCharProps {
 		char: string
@@ -151,7 +157,7 @@ const Level3 = () => {
 					<FlashText text='u' />
 				</div>
 			) : (
-				<ErrorPage />
+				<Loader />
 			)}
 		</>
 	)

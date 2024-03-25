@@ -25,6 +25,13 @@
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a box shadow */
 }
 
+.form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
 .input-box {
 	width: 500px;
 	height: 30px;
@@ -45,6 +52,7 @@
 .submit-button {
 	padding: 10px 20px;
 	border: solid black;
+	width: 200px;
 	border-radius: 5px;
 	background-color: #e30f59; /* Blood red color */
 	color: white; /* White text color */

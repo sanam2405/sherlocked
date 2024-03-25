@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import '../styles/congratulationspage.css'
 import { useNavigate } from 'react-router'
 import HttpStatusCode from '../constants/HttpStatusCodes'
+import Loader from '../components/Loader'
 
 // fix congratulations css
 
@@ -46,10 +47,12 @@ const CongratulationsPage = () => {
 
 	return (
 		<>
-			{isLoggedIn && currentLevel == 4 && (
+			{isLoggedIn && currentLevel == 4 ? (
 				<div className='congratulations-container'>
 					<h1 style={{ color: '#65a30d' }}>Congratulations</h1>
 				</div>
+			) : (
+				<Loader />
 			)}
 		</>
 	)

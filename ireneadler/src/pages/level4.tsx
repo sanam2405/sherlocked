@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import '../styles/level3.css'
 import HttpStatusCode from '../constants/HttpStatusCodes'
 import { TIME_TO_HINT } from '../constants'
-import ErrorPage from './ErrorPage'
+import Loader from '../components/Loader'
 
 const Level4 = () => {
 	const navigate = useNavigate()
@@ -102,7 +102,7 @@ const Level4 = () => {
 
 	return (
 		<>
-			{isLoggedIn === 'true' && currentLevel >= 2 ? (
+			{isLoggedIn === 'true' && currentLevel >= 3 ? (
 				<div className='l3-container'>
 					<p className='description'>
 						Mia’s parents are away from home and she has called Abhishek to come
@@ -144,7 +144,7 @@ const Level4 = () => {
 					{/* <FlashText text="H" /> */}
 				</div>
 			) : (
-				<ErrorPage />
+				<Loader />
 			)}
 		</>
 	)
