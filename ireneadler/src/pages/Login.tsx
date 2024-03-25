@@ -12,7 +12,6 @@ const Login = () => {
 
 	const navigate = useNavigate()
 
-
 	const BACKEND_BASE_URI: string = import.meta.env.VITE_BACKEND_BASE_URI
 
 	const postData = async (event: FormEvent<HTMLFormElement>): Promise<void> => {

@@ -1,6 +1,8 @@
 # sherlocked
 
-A race against time to observe, decipher and unveil a mysterious case
+_A race against time to observe, decipher and unveil a mysterious case_
+
+[Sherlocked - _Start Hacking Now_](https://sherlocked-chi.vercel.app/)
 
 ![](prelims/public/sherlocked_poster.jpeg)
 

@@ -62,8 +62,8 @@ const Level3 = () => {
 
 			if (status === HttpStatusCode.OK) {
 				setCurrentLevel(jsonData.level)
-				console.log('JSON DATA', jsonData)
-				console.log('JSON DATA LEVEL', jsonData.level)
+				// console.log('JSON DATA', jsonData)
+				// console.log('JSON DATA LEVEL', jsonData.level)
 			} else {
 				navigate('/error-page')
 			}
@@ -104,7 +104,7 @@ const Level3 = () => {
 	}, [])
 
 	useEffect(() => {
-		console.log('Current level ', currentLevel)
+		// console.log('Current level ', currentLevel)
 	}, [currentLevel])
 
 	interface BoldCharProps {
