@@ -186,8 +186,9 @@ const PORT = process.env.PORT || 5004
 mongoose
 	.connect(process.env.MONGODB_URL)
 	.then(() => {
+		console.log("Connected to MongoDB")
 		app.listen(PORT, () => {
-			console.log(`server running on port: ${PORT}`)
+			console.log(`Server running on port: ${PORT}`)
 		})
 	})
-	.catch(error => console.log(`Did not connect ${error}`))
+	.catch(error => console.log(`Could not connect to MongoDB ${error}`))

@@ -1,4 +1,5 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import Register from './pages/Register'
 import Login from './pages/Login'
 import Level1 from './pages/level1'
 import Level2 from './pages/level2'
@@ -12,7 +13,8 @@ function App() {
 		<>
 			<BrowserRouter>
 				<Routes>
-					<Route path='/' element={<Login />} />
+					<Route path='/' element={<Register />} />
+					<Route path='/login' element={<Login />} />
 					<Route path='/error-page' element={<ErrorPage />} />
 					<Route path='/level-1' element={<Level1 />} />
 					<Route path='/level-2' element={<Level2 />} />
