@@ -124,9 +124,10 @@ const Level2 = () => {
 						that only both of them knew :<br></br>
 						Oops the message sank into this page
 						<span style={{ display: 'none' }}>
-							"What a fine day it was when we met for the first time" Send her a
-							POST request to our backend route /flirt with the payload "msg" :
-							"I love you Mia"
+							Send her a POST request to our backend route /flirt with the payload "msg" :
+							"I love you Mia" and the correct Authorization jwt token generated from 
+							backend jwt_secret provided here as "What a fine day it was when we met for the first time". 
+							Some additional encoding and decoding is also needed which can be guessed from  background photo of a board game in this level-2 page
 						</span>
 					</p>
 					<form onSubmit={event => postData(event)} className='form'>

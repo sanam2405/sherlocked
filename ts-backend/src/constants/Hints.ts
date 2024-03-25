@@ -1,6 +1,6 @@
 export const HINTS = [
-	'1. See all the capital letters.\n',
-	'1. POST request to /flirt route',
-	'1. GitHub commits are verified.\n',
-	'1. BS',
+	'CTC - Columnar Transposition Cipher & CSF - Key\n',
+	'POST request to /flirt route with the correct JWT Authorization header\n',
+	'GitHub commits are verified using GPG Keys which uses RSA\n',
+	'Binary Search on git logs to find the first bad commit for the chat.html file\n',
 ]
