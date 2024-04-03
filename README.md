@@ -27,6 +27,7 @@ The codebase is organized as :
 
 ```bash
     cd ireneadler
+    npm install
     npm run dev
 ```
 
@@ -34,6 +35,7 @@ The codebase is organized as :
 
 ```bash
     cd sherlockholmes
+    npm install
     npm run dev
 ```
 
@@ -41,6 +43,7 @@ For a clean build
 
 ```bash
    cd sherlockholmes
+   npm install
    npm run build
    npm start
 ```
