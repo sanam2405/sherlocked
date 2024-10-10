@@ -9,7 +9,7 @@
     "start": "nodemon index.js",
     "format": "prettier --write \"./**/*.{html,css,js,jsx,ts,tsx}\""
   },
-  "author": "Tanmay",
+  "author": "Tanmay Roy",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
