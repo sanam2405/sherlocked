@@ -13,7 +13,7 @@ import {
 } from './routes'
 
 const app = express()
-const PORT: string | number = process.env.PORT || 5004
+const PORT: string | number = process.env.PORT || 5005
 
 app.use(cors())
 app.use(express.json())

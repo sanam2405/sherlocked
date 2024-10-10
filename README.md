@@ -6,6 +6,22 @@ _A race against time to observe, decipher and unveil a mysterious case_
 
 ![](prelims/public/sherlocked_poster.jpeg)
 
+## Sherlocking locally with Docker
+
+- Starting all the services
+
+```bash
+    docker compose up
+```
+
+- Connecting with the _Moriarty_ TCP server
+
+```bash
+    nc localhost 3003
+```
+
+Start getting _Sherlocked_ at _**`localhost:5173`**_
+
 ## Setting up locally
 
 The codebase is organized as :

@@ -4,5 +4,25 @@ services:
       context: ./moriarty
       dockerfile: Dockerfile
     ports:
-      - '3000:3000'
+      - '3003:3003'
     container_name: sherlocked_moriarty
+
+  sherlockholmes:
+    build:
+      context: ./sherlockholmes
+      dockerfile: Dockerfile
+    ports:
+      - '5005:5005'
+    environment:
+      env_file: './sherlockholmes.env'
+    container_name: sherlocked_sherlockholmes
+
+  ireneadler:
+    build:
+      context: ./ireneadler
+      dockerfile: Dockerfile
+    ports:
+      - '5173:5173'
+    environment:
+      env_file: './ireneadler.env'
+    container_name: sherlocked_ireneadler
